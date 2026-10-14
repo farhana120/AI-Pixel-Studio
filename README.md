@@ -199,7 +199,20 @@ current project contents.
 
 ## Author / course details
 
-Fill in these details before submission: - **Student name:** \[Your
-name\] - **Department / program:** \[Department and program\] -
-**Institution:** \[Institution name\] - **Course / supervisor:**
-\[Course or supervisor\] - **Submission date:** \[Date\]
+ **Student name:** \[FARHANA RAHMAN
+\] - **Department / program:** \[CSE,BSC IN COMPUTER SCIENCE & ENGINEERING\] -
+**Institution:** \[HAMDARD UNIVERSITY AND BANGLADESH\] - **Course / supervisor:**
+\[DIGITAL IMAGE PROCESSING\] - **Submission date:** \[30/11/26\]
+
+
+
+## Screenshots
+
+### Main Interface
+![AI Pixel Studio Main Interface](assets/main-interface.png)
+
+### Image Processing
+![AI Pixel Studio Image Processing](assets/image-processing.png)
+
+### RGB Histogram
+![AI Pixel Studio RGB Histogram](assets/rgb-histogram.png)
