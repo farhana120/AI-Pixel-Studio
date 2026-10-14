@@ -1,0 +1,102 @@
+AI PIXEL STUDIO
+Desktop Image Processing Application
+Project Report
+
+Student Name: [Your name]
+Program / Department: [Your program / department]
+Institution: [Your institution]
+Course / Supervisor: [Course / supervisor]
+Submission Date: [Date]
+ 
+Abstract
+AI Pixel Studio is a desktop image-processing application developed with Python and PySide6. It provides a graphical workspace for loading images, viewing original and processed versions side by side, applying classical image-processing operations, adjusting image appearance, reviewing RGB intensity distributions, and exporting results. OpenCV and NumPy support pixel-level operations and image analysis, Pillow supports image conversion and enhancement, and Matplotlib provides a separate histogram visualization. The interface uses a dark theme and grouped tool categories to improve workflow clarity. The current active application focuses on conventional image processing; optional AI-related methods in the source require additional dependencies and are not exposed as active controls in the current main interface.
+1. Introduction
+Images are commonly edited for enhancement, analysis, visualization, and preparation for reports or digital content. A desktop image editor can make common operations accessible through a graphical interface without requiring users to write code for each task. AI Pixel Studio was created as a Python-based desktop application that combines essential image transformations, filters, adjustments, and analysis tools in one workspace.
+2. Problem Statement
+Performing routine image-processing tasks often requires switching between separate tools or writing small scripts. The project addresses this workflow problem by bringing common transformations and filters into one desktop interface with side-by-side previews, adjustment controls, undo/redo support, and image export.
+3. Objectives
+•	Develop a desktop graphical user interface for image processing.
+•	Support opening, previewing, transforming, and exporting images.
+•	Implement common filters and edge-analysis operations.
+•	Provide brightness, contrast, and sharpness controls.
+•	Display image dimensions, format, zoom, and RGB histogram information.
+•	Support undo, redo, reset, and before/after comparison.
+•	Package the application for Windows using PyInstaller.
+4. Scope of the Project
+The current active interface includes image loading, original/processed previews, crop, rotate, flip, resize, grayscale, Gaussian blur, median filtering, sharpening, denoising, Sobel and Canny edge detection, thresholding, histogram equalization, RGB histogram display, basic enhancement, zoom controls, image information, undo/redo, reset, before/after comparison, and PNG/JPEG export. Optional AI background-removal and image-captioning methods exist in the source code but require extra dependencies and model downloads and are not active controls in the current interface.
+5. Technology Stack
+•	Python: application logic and integration.
+•	PySide6 (Qt): desktop window, controls, layouts, dialogs, sliders, and image canvases.
+•	OpenCV: grayscale conversion, blur, median filtering, sharpening, denoising, edge detection, thresholding, and histogram equalization.
+•	NumPy: image-array manipulation and histogram computation.
+•	Pillow: image conversion, brightness/contrast/sharpness enhancement, and Lanczos resizing.
+•	Matplotlib: separate RGB histogram plot.
+•	PyInstaller: packaging the Python application into a Windows executable folder.
+6. System Design
+6.1 Main interface
+The main window is organized into a top toolbar, a left-side grouped tools panel, two central preview panels, and a right-side properties panel. The toolbar provides Open, Save, Export, Undo, Redo, Reset, and Before/After controls. The left panel groups operations into Crop & Transform, Filters, and Edge & Analysis. The right panel provides adjustment sliders, zoom/view controls, image information, and a compact RGB histogram.
+6.2 Image state
+The application keeps an original image and a current processed image. Processing operations update the current image, while an undo stack and redo stack retain image snapshots for navigation through recent edits. Reset restores the current image from the original image. Before/After comparison temporarily displays the original image in the processed preview.
+6.3 Processing workflow
+1.	Open an image using the file dialog.
+2.	Display the original and current image previews.
+3.	Choose a transformation, filter, or adjustment.
+4.	Review the updated processed preview and histogram.
+5.	Use Undo/Redo or Reset if necessary.
+6.	Export the processed image as PNG or JPEG.
+7. Implemented Features
+Feature	Description
+Image input and preview	Open supported image files and display original and processed previews side by side.
+Crop and transform	Mouse-drag crop, center crop by dimensions, 90-degree rotation, horizontal flip, and resize.
+Filters	Grayscale, Gaussian blur, median filter, sharpen, color denoising, and histogram equalization.
+Edge and image analysis	Sobel edge detection, Canny edge detection, binary thresholding, and RGB histogram.
+Adjustments	Brightness, contrast, and sharpness sliders with numeric readouts.
+Navigation	Undo, redo, reset, before/after comparison, zoom in/out, and fit-to-window.
+Export	Save the current processed image as PNG or JPEG.
+Keyboard shortcuts	Ctrl+O, Ctrl+S, Ctrl+Z, Ctrl+Y, Ctrl+Shift+S, and Ctrl+0.
+8. How to Run
+Install a compatible Python version and install the packages listed in requirements.txt. From the project directory, run:
+python -m pip install -r requirements.txt
+python main.py
+If the main source file has a different name, use that filename or rename it to main.py after keeping a backup.
+9. Windows Executable Packaging
+The application was packaged using PyInstaller in onedir mode. A separate build and output directory can avoid file-lock conflicts with an older build:
+python -m PyInstaller --noconfirm --clean --windowed --name AIPixelStudio_v5 --distpath release_v5 --workpath build_v5 --collect-all PySide6 main.py
+The expected executable is release_v5/AIPixelStudio_v5/AIPixelStudio_v5.exe. The entire AIPixelStudio_v5 folder, including _internal, must remain together when running or distributing the application.
+10. Testing Plan
+•	Launch the application from source and from the packaged executable.
+•	Open PNG and JPEG test images.
+•	Apply each filter and verify the processed preview updates.
+•	Test crop, rotate, flip, and resize.
+•	Move each adjustment slider and confirm the numeric value updates.
+•	Test undo, redo, reset, and before/after comparison.
+•	Confirm the RGB histogram responds to the loaded image.
+•	Export PNG and JPEG files and reopen them to verify output.
+•	Resize the application window and check for clipped controls.
+The developer has reported that the packaged application opens and that the features tested on their computer work. This report does not claim formal automated testing or benchmark results.
+11. Limitations
+•	The current application is a local desktop editor and does not provide cloud storage or collaboration.
+•	The current adjustment sliders cover brightness, contrast, and sharpness only.
+•	Lanczos upscaling is classical interpolation and should not be described as AI super-resolution.
+•	Optional AI background-removal and captioning methods need extra packages and pretrained model downloads and are not exposed as active controls in the current interface.
+•	Image-processing speed and visual results may vary with image dimensions and hardware.
+•	Formal automated tests, performance benchmarks, and broad compatibility testing remain future work.
+12. Future Enhancements
+•	Add saturation and more advanced adjustment controls.
+•	Add crop aspect-ratio presets and improved pan/zoom.
+•	Add more output formats and JPEG quality controls.
+•	Create automated unit tests and GUI regression tests.
+•	Add app icon, version information, and an installer.
+•	Integrate optional AI features after their dependencies and workflows are tested.
+13. Conclusion
+AI Pixel Studio demonstrates how Python-based image-processing libraries can be combined with a desktop GUI to provide a practical image-editing workflow. The application brings common transformations, filters, adjustments, previews, histogram analysis, history navigation, and export into one interface. The packaged Windows build makes the project easier to demonstrate. Additional testing, documentation completion, and future UI and feature enhancements can further improve reliability and usability.
+References
+•	Python documentation: https://docs.python.org/3/
+•	Qt for Python (PySide6): https://doc.qt.io/qtforpython/
+•	OpenCV documentation: https://docs.opencv.org/
+•	NumPy documentation: https://numpy.org/doc/
+•	Pillow documentation: https://pillow.readthedocs.io/
+•	Matplotlib documentation: https://matplotlib.org/stable/
+•	PyInstaller documentation: https://pyinstaller.org/
+
+Submission note: Replace the bracketed student/course details on the cover page before submitting. Add your own screenshots of the running application where required by your instructor.
